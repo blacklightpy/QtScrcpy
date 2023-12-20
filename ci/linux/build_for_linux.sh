@@ -46,7 +46,7 @@ if [ -d "$output_path" ]; then
 fi
 
 cmake_params="-DCMAKE_PREFIX_PATH=$qt_cmake_path -DCMAKE_BUILD_TYPE=$build_mode -DCMAKE_C_FLAGS="-static -Os""
-CC="musl-gcc" CXX="musl-gcc" cmake $cmake_params .
+CC="musl-gcc" CXX="musl-g++" cmake $cmake_params .
 if [ $? -ne 0 ] ;then
     echo "error: CMake failed, exiting......"
     exit 1
