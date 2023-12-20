@@ -9,7 +9,8 @@ echo Current directory: $(pwd)
 # Set variables
 qt_cmake_path=$ENV_QT_PATH/gcc_64/lib/cmake/Qt5
 export PATH=$qt_gcc_path/bin:$PATH
-export CC="musl-gcc -static -Os"
+
+#export CC="musl-gcc -static -Os"
 
 # Remember working directory
 old_cd=$(pwd)
@@ -44,8 +45,8 @@ if [ -d "$output_path" ]; then
     rm -rf $output_path
 fi
 
-cmake_params="-DCMAKE_PREFIX_PATH=$qt_cmake_path -DCMAKE_BUILD_TYPE=$build_mode"
-cmake $cmake_params .
+cmake_params="-DCMAKE_PREFIX_PATH=$qt_cmake_path -DCMAKE_BUILD_TYPE=$build_mode -DCMAKE_C_FLAGS="-static -Os""
+CC="musl-gcc" cmake $cmake_params .
 if [ $? -ne 0 ] ;then
     echo "error: CMake failed, exiting......"
     exit 1
