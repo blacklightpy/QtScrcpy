@@ -11,7 +11,7 @@ qt_cmake_path=$ENV_QT_PATH/gcc_64/lib/cmake/Qt5
 export PATH=$qt_gcc_path/bin:$PATH
 
 #export CC="musl-gcc -static -Os"
-set -euo pipefail
+#set -euo pipefail
 # musl paths
 MUSL_PREFIX='/usr/local/x86_64-linux-musl'
 MUSL_INC="$MUSL_PREFIX/include"
