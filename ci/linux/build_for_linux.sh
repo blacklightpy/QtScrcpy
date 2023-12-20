@@ -11,6 +11,13 @@ qt_cmake_path=$ENV_QT_PATH/gcc_64/lib/cmake/Qt5
 export PATH=$qt_gcc_path/bin:$PATH
 
 #export CC="musl-gcc -static -Os"
+set -euo pipefail
+# musl paths
+MUSL_PREFIX='/usr/local/x86_64-linux-musl'
+MUSL_INC="$MUSL_PREFIX/include"
+MUSL_LIB="$MUSL_PREFIX/lib"
+CC='/usr/local/bin/x86_64-linux-musl-gcc'
+CXX='/usr/local/bin/x86_64-linux-musl-g++'
 
 # Remember working directory
 old_cd=$(pwd)
@@ -45,8 +52,17 @@ if [ -d "$output_path" ]; then
     rm -rf $output_path
 fi
 
+
 cmake_params="-DCMAKE_PREFIX_PATH=$qt_cmake_path -DCMAKE_BUILD_TYPE=$build_mode -DCMAKE_C_FLAGS="-static -Os""
-CC="musl-gcc" CXX="musl-g++" cmake $cmake_params .
+CC="$CC"                        \
+CXX="$CXX"                      \
+LDFLAGS="-L$MUSL_LIB -Wl,-rpath,$MUSL_LIB"      \
+CFLAGS="-I$MUSL_INC"                    \
+CXXFLAGS="-I$MUSL_INC"                  \
+CPPFLAGS="-I$MUSL_INC"                  \
+CMAKE_PREFIX_PATH="$MUSL_PREFIX"            \
+cmake $cmake_params .
+
 if [ $? -ne 0 ] ;then
     echo "error: CMake failed, exiting......"
     exit 1
