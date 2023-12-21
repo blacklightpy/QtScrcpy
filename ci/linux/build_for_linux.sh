@@ -68,13 +68,14 @@ if [ $? -ne 0 ] ;then
     exit 1
 fi
 
+make "$build_mode" \
 CC="$CC"                        \
 CXX="$CXX"                      \
 LDFLAGS="-L$MUSL_LIB -Wl,-rpath,$MUSL_LIB"      \
 CFLAGS="-I$MUSL_INC"                    \
 CXXFLAGS="-I$MUSL_INC"                  \
-CPPFLAGS="-I$MUSL_INC" \
-cmake --build . --config "$build_mode" -j8
+CPPFLAGS="-I$MUSL_INC"
+#cmake --build . --config "$build_mode" -j8
 
 
 if [ $? -ne 0 ] ;then
