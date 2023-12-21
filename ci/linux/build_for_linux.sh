@@ -68,14 +68,13 @@ if [ $? -ne 0 ] ;then
     exit 1
 fi
 
+cmake --build . --config "$build_mode" -j8 \
 CC="$CC"                        \
 CXX="$CXX"                      \
 LDFLAGS="-L$MUSL_LIB -Wl,-rpath,$MUSL_LIB"      \
 CFLAGS="-I$MUSL_INC"                    \
 CXXFLAGS="-I$MUSL_INC"                  \
-CPPFLAGS="-I$MUSL_INC"                  \
-CMAKE_PREFIX_PATH="$MUSL_PREFIX"            \
-cmake --build . --config "$build_mode" -j8
+CPPFLAGS="-I$MUSL_INC"
 
 if [ $? -ne 0 ] ;then
     echo "error: CMake build failed, exiting......"
