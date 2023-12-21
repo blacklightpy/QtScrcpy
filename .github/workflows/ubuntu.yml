@@ -38,8 +38,12 @@ jobs:
         with:
           path: ${{ env.qt-install-path }}/${{ matrix.qt-arch-install }}
           key: ${{ runner.os }}/${{ matrix.qt-ver }}/${{ matrix.qt-arch-install }}
-      - name: Install GL library
-        run: sudo apt-get install -y libglew-dev libglfw3-dev musl musl-tools musl-dev
+      - name: Install GL library and musl toolchain
+        run: |
+          sudo apt-get install -y libglew-dev libglfw3-dev musl musl-tools musl-dev wget 7zip tar
+          wget http://musl.cc/x86_64-linux-musl-cross.tgz
+          7zz x x86_64-linux-musl-cross.tgz
+          tar -xvf x86_64-linux-musl-cross
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
