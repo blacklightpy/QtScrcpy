@@ -27,6 +27,15 @@ jobs:
       qt-install-path: ${{ github.workspace }}/${{ matrix.qt-ver }}
       plantform-des: ubuntu
     steps:
+      - name: Install GL library and musl toolchain
+        run: |
+          sudo apt-get install -y libglew-dev libglfw3-dev musl musl-tools musl-dev wget 7zip tar
+          wget http://musl.cc/x86_64-linux-musl-cross.tgz
+          7zz x x86_64-linux-musl-cross.tgz
+          tar -xvf x86_64-linux-musl-cross.tar
+          ls -l
+          ls x86_64-linux-musl-cross
+          ls x86_64-linux-musl-cross/bin/
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.13.0
         with:
@@ -38,12 +47,6 @@ jobs:
         with:
           path: ${{ env.qt-install-path }}/${{ matrix.qt-arch-install }}
           key: ${{ runner.os }}/${{ matrix.qt-ver }}/${{ matrix.qt-arch-install }}
-      - name: Install GL library and musl toolchain
-        run: |
-          sudo apt-get install -y libglew-dev libglfw3-dev musl musl-tools musl-dev wget 7zip tar
-          wget http://musl.cc/x86_64-linux-musl-cross.tgz
-          7zz x x86_64-linux-musl-cross.tgz
-          tar -xvf x86_64-linux-musl-cross.tar
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
