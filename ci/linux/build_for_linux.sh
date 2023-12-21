@@ -13,11 +13,11 @@ export PATH=$qt_gcc_path/bin:$PATH
 #export CC="musl-gcc -static -Os"
 #set -euo pipefail
 # musl paths
-MUSL_PREFIX='$(pwd)/x86_64-linux-musl-cross'
+MUSL_PREFIX='x86_64-linux-musl-cross'
 MUSL_INC="$MUSL_PREFIX/include"
 MUSL_LIB="$MUSL_PREFIX/lib"
-CC='$(pwd)/x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc'
-CXX='$(pwd)/x86_64-linux-musl-cross/bin/x86_64-linux-musl-g++'
+CC='x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc'
+CXX='$x86_64-linux-musl-cross/bin/x86_64-linux-musl-g++'
 
 # Remember working directory
 old_cd=$(pwd)
