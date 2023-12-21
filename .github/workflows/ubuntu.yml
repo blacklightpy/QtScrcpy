@@ -34,7 +34,7 @@ jobs:
           7zz x x86_64-linux-musl-cross.tgz
           tar -xvf x86_64-linux-musl-cross.tar
           ls -l
-          echo pwd
+          pwd
           ls x86_64-linux-musl-cross
           ls x86_64-linux-musl-cross/bin/
       - name: Install Qt
