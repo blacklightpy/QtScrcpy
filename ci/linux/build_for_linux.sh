@@ -17,7 +17,7 @@ MUSL_PREFIX='x86_64-linux-musl-cross'
 MUSL_INC="$MUSL_PREFIX/include"
 MUSL_LIB="$MUSL_PREFIX/lib"
 CC='x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc'
-CXX='$x86_64-linux-musl-cross/bin/x86_64-linux-musl-g++'
+CXX='x86_64-linux-musl-cross/bin/x86_64-linux-musl-g++'
 
 # Remember working directory
 old_cd=$(pwd)
