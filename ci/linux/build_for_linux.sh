@@ -13,6 +13,9 @@ export PATH=$qt_gcc_path/bin:$PATH
 #export CC="musl-gcc -static -Os"
 #set -euo pipefail
 # musl paths
+pwd
+ls -l /home/runner/work/QtScrcpy/QtScrcpy
+ls -l /home/runner/work/QtScrcpy/QtScrcpy/x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc
 MUSL_PREFIX='/home/runner/work/QtScrcpy/QtScrcpy/x86_64-linux-musl-cross'
 MUSL_INC="$MUSL_PREFIX/include"
 MUSL_LIB="$MUSL_PREFIX/lib"
